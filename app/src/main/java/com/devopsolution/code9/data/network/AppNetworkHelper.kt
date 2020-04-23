@@ -22,6 +22,9 @@ class AppNetworkHelper @Inject constructor(private val apiService: ApiService) :
     override fun checkInUser(userId: String, shopId: String?) =
         apiService.checkInUser(CheckInRequest(shopId!!, userId)).getResponse()
 
+    override fun checkOutUser(userId: String, shopId: String?) =
+        apiService.checkOutUser(CheckInRequest(shopId!!, userId)).getResponse()
+
     override fun registerToken(fcmToken: String, deviceId: String, userId: String?) =
         apiService.registerToken(
             mapOf(

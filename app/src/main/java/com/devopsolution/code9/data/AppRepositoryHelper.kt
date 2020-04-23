@@ -26,6 +26,9 @@ class AppRepositoryHelper @Inject constructor(
     override fun checkInUser(userId: String, shopId: String?) =
         networkHelper.checkInUser(userId, getUserId())
 
+    override fun checkOutUser(userId: String, shopId: String?) =
+        networkHelper.checkOutUser(userId, getUserId())
+
     override fun registerToken(
         fcmToken: String,
         deviceId: String,

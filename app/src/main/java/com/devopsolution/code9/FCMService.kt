@@ -25,12 +25,11 @@ class FCMService : FirebaseMessagingService() {
             val channelId =  Constants.GLOBAL_NOTIFICATIONS_CHANNEL
 
 
-
             val notification = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
 
                 NotificationCompat.Builder(applicationContext, channelId)
-                    .setContentTitle(remoteMessage.data["title"])
-                    .setContentText(remoteMessage.data["body"])
+                    .setContentTitle(remoteMessage.data["Title"])
+                    .setContentText(remoteMessage.data["Body"])
                     .setPriority(NotificationManager.IMPORTANCE_HIGH)
                     .setSmallIcon(R.drawable.square_icon)
                     .setLargeIcon(BitmapFactory.decodeResource(resources, R.drawable.square_icon))

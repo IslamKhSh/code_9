@@ -23,6 +23,9 @@ interface ApiService {
     @POST("Shop/CheckIn")
     fun checkInUser(@Body checkInRequest: CheckInRequest): Call<GeneralResponse<Any?>>
 
+    @POST("Shop/Checkout")
+    fun checkOutUser(@Body checkInRequest: CheckInRequest): Call<GeneralResponse<Any?>>
+
     @POST("Admin/RegisterDeviceToken")
     fun registerToken(@Body body: Map<String, String>) : Call<GeneralResponse<Any?>>
 

@@ -15,4 +15,6 @@ interface NetworkHelper {
         deviceId: String,
         userId: String? = null
     ): MutableLiveData<ApiResponse<Any?>>
+
+    fun checkOutUser(userId: String, shopId: String? = null): MutableLiveData<ApiResponse<Any?>>
 }

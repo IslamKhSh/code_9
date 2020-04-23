@@ -23,6 +23,8 @@ class LoginViewModel(app: Application) : BaseViewModel(app) {
         var isValid = true
 
         root.forEach {
+            if (it is ViewGroup && !validateLoginData(it))
+                isValid = false
             if (it is CustomEditText && !it.validateContent())
                 isValid = false
         }
@@ -33,14 +35,15 @@ class LoginViewModel(app: Application) : BaseViewModel(app) {
     fun login(idNum: String, password: String): MutableLiveData<ApiResponse<User>> {
         isLoading.value = true
 
-        return appRepositoryHelper.login(LoginRequest(idNum, password, userType.value!!.value)).apply {
-            observeForever{
-             handleResponseWhenError(it)
-                if (it.isResponseSuccessful){
-                    appRepositoryHelper.setUserId(it.responseBody!!.data.id)
-                    appRepositoryHelper.setUserType(userType.value!!.value)
+        return appRepositoryHelper.login(LoginRequest(idNum, password, userType.value!!.value))
+            .apply {
+                observeForever {
+                    handleResponseWhenError(it)
+                    if (it.isResponseSuccessful) {
+                        appRepositoryHelper.setUserId(it.responseBody!!.data.id)
+                        appRepositoryHelper.setUserType(userType.value!!.value)
+                    }
                 }
             }
-        }
     }
 }
