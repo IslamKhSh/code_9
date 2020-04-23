@@ -20,10 +20,10 @@ class AppNetworkHelper @Inject constructor(private val apiService: ApiService) :
     override fun getUserInfo(id: String) = apiService.getUserInfo(id).getResponse()
 
     override fun checkInUser(userId: String, shopId: String?) =
-        apiService.checkInUser(CheckInRequest(shopId!!, userId)).getResponse()
+        apiService.checkInUser(CheckInRequest(shopId!!.toInt(), userId)).getResponse()
 
     override fun checkOutUser(userId: String, shopId: String?) =
-        apiService.checkOutUser(CheckInRequest(shopId!!, userId)).getResponse()
+        apiService.checkOutUser(CheckInRequest(shopId!!.toInt(), userId)).getResponse()
 
     override fun registerToken(
         fcmToken: String,
