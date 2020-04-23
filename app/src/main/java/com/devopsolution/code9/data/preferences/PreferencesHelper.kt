@@ -10,4 +10,5 @@ interface PreferencesHelper {
     fun setUserType(type: Int)
     fun setFcmToken(token: String)
     fun getFcmToken(): String?
+    fun clearUserData()
 }

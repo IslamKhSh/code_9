@@ -29,5 +29,8 @@ interface ApiService {
     @POST("Admin/RegisterDeviceToken")
     fun registerToken(@Body body: Map<String, String>) : Call<GeneralResponse<Any?>>
 
+    @POST("Admin/UnRegisterDeviceToken")
+    fun logout(@Query("userId") userId: String): Call<GeneralResponse<Any?>>
+
 
 }

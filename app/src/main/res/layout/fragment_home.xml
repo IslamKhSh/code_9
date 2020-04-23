@@ -26,6 +26,19 @@
             app:showBack="@{false}"
             app:viewModel="@{viewModel}" />
 
+        <ImageView
+            style="@style/clickable_view"
+            android:layout_width="@dimen/x24dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/x28dp"
+            android:layout_marginEnd="@dimen/x12dp"
+            android:src="@drawable/ic_check_out"
+            android:adjustViewBounds="true"
+            android:tint="@android:color/white"
+            android:onClick="@{() -> viewModel.logout()}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <Space
             android:id="@+id/toolbar_space"
             android:layout_width="match_parent"
@@ -161,8 +174,8 @@
                     <androidx.constraintlayout.helper.widget.Flow
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        app:flow_horizontalStyle="spread_inside"
                         app:constraint_referenced_ids="container_safety,container_shopping,container_quarantine,container_adviser"
+                        app:flow_horizontalStyle="spread_inside"
                         app:flow_wrapMode="chain"
                         app:layout_constraintTop_toTopOf="parent" />
 

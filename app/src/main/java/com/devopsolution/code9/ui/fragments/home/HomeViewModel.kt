@@ -20,6 +20,7 @@ class HomeViewModel(app: Application) : BaseViewModel(app) {
 
             if (it.isResponseSuccessful)
                 dashboard.postValue(it.responseBody!!.data)
+
         }
     }
 
@@ -40,6 +41,19 @@ class HomeViewModel(app: Application) : BaseViewModel(app) {
 
     fun onNotActiveFeatureClicked() {
         notActiveFeatureClicked.value = true
+    }
+
+    fun logout() {
+        isLoading.value = true
+
+        appRepositoryHelper.logout().observeForever {
+            handleResponseWhenError(it)
+
+            if (it.isResponseSuccessful) {
+                appRepositoryHelper.clearUserData()
+                isLogoutRequired.postValue(true)
+            }
+        }
     }
 
 }

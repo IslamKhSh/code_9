@@ -17,6 +17,9 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
 import com.devopsolution.code9.common.extensions.errorMsg
+import com.devopsolution.code9.common.extensions.goToActivity
+import com.devopsolution.code9.ui.activities.auth.AuthActivity
+import com.devopsolution.code9.ui.activities.splash.SplashActivity
 
 abstract class BaseFragment<VM : BaseViewModel,
         DB : ViewDataBinding>(private val mViewModelClass: Class<VM>) : Fragment(),
@@ -72,6 +75,15 @@ abstract class BaseFragment<VM : BaseViewModel,
 
         viewModel.errorMsg.observe(viewLifecycleOwner, Observer { errorMsg(it) })
         viewModel.errorMsgRes.observe(viewLifecycleOwner, Observer { errorMsg(it) })
+
+        viewModel.isLogoutRequired.observe(viewLifecycleOwner, Observer {
+
+            if (it) {
+                viewModel.isLogoutRequired.value = false
+                goToActivity(AuthActivity::class.java)
+                activity?.finish()
+            }
+        })
     }
 
     override fun initLifeCycleOwner() {

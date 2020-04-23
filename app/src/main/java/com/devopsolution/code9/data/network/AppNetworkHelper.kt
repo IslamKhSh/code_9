@@ -33,4 +33,6 @@ class AppNetworkHelper @Inject constructor(private val apiService: ApiService) :
                 "userId" to userId!!
             )
         ).getResponse()
+
+    override fun logout(userId: String?) = apiService.logout(userId!!).getResponse()
 }

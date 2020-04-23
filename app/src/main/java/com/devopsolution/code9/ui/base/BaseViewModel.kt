@@ -38,6 +38,8 @@ abstract class BaseViewModel(val app: Application) : AndroidViewModel(app) {
     var errorMsg = MutableLiveData<String>()
     var errorMsgRes = MutableLiveData<Int>()
 
+    val isLogoutRequired = MutableLiveData(false)
+
     /** livData of boolean value used to handle displaying and hiding of progressbar **/
     val isLoading = MutableLiveData<Boolean>().apply { value = false }
 
