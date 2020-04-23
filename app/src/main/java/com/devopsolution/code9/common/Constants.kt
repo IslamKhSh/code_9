@@ -3,6 +3,7 @@ package com.devopsolution.code9.common
 object Constants {
 
 
+
     //numbers
     const val CACHE_SIZE = 10 * 1024 * 1024 //10MB
     const val CACHE_MAX_AGE = 1 //1 second
@@ -37,5 +38,8 @@ object Constants {
     const val CURRENT_LANGUAGE_KEY = "CURRENT_LANGUAGE"
 
     const val GLOBAL_NOTIFICATIONS_CHANNEL = "GLOBAL"
+
+    const val REFRESH_ACTION = "refresh"
+
 
 }

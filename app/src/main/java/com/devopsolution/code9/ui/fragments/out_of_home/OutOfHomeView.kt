@@ -4,5 +4,4 @@ import com.devopsolution.code9.ui.base.BaseView
 
 interface OutOfHomeView : BaseView {
     fun initRecycler()
-    fun initSearch()
 }

@@ -21,7 +21,6 @@ class OutOfHomeFragment : OutOfHomeView, BaseFragment<OutOfHomeViewModel, Fragme
 
     override fun init(savedInstanceState: Bundle?) {
         initRecycler()
-        initSearch()
     }
 
     override fun initRecycler() {
@@ -36,7 +35,8 @@ class OutOfHomeFragment : OutOfHomeView, BaseFragment<OutOfHomeViewModel, Fragme
         })
     }
 
-    override fun initSearch() {
-
+    override fun refreshUI() {
+        viewModel.categories.value = emptyList()
+        super.refreshUI()
     }
 }

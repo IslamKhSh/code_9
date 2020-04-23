@@ -2,15 +2,17 @@ package com.devopsolution.code9
 
 import android.app.Notification
 import android.app.NotificationManager
+import android.content.Intent
 import android.graphics.BitmapFactory
 import android.os.Build
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import androidx.core.content.ContextCompat
-import androidx.navigation.NavDeepLinkBuilder
+import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import com.devopsolution.code9.common.Constants
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
+
 
 class FCMService : FirebaseMessagingService() {
 
@@ -22,7 +24,7 @@ class FCMService : FirebaseMessagingService() {
         remoteMessage.data.isNotEmpty().let {
 
             val notificationId = 121
-            val channelId =  Constants.GLOBAL_NOTIFICATIONS_CHANNEL
+            val channelId = Constants.GLOBAL_NOTIFICATIONS_CHANNEL
 
 
             val notification = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
@@ -56,6 +58,10 @@ class FCMService : FirebaseMessagingService() {
                 notify(notificationId, notification)
             }
 
+            Intent().apply {
+                action = Constants.REFRESH_ACTION
+                LocalBroadcastManager.getInstance(baseContext).sendBroadcast(this)
+            }
         }
     }
 }

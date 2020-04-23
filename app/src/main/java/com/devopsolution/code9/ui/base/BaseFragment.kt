@@ -1,12 +1,14 @@
 package com.devopsolution.code9.ui.base
 
 
+import android.content.BroadcastReceiver
 import android.content.Context
+import android.content.Intent
+import android.content.IntentFilter
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.WindowManager
 import android.view.inputmethod.InputMethodManager
 import androidx.annotation.CallSuper
 import androidx.databinding.DataBindingUtil
@@ -14,17 +16,19 @@ import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelProviders
+import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import androidx.navigation.fragment.findNavController
-import com.devopsolution.code9.common.extensions.errorMsg
+import com.devopsolution.code9.common.Constants
 import com.devopsolution.code9.common.extensions.goToActivity
 import com.devopsolution.code9.common.extensions.showDialog
 import com.devopsolution.code9.ui.activities.auth.AuthActivity
-import com.devopsolution.code9.ui.activities.splash.SplashActivity
+
 
 abstract class BaseFragment<VM : BaseViewModel,
         DB : ViewDataBinding>(private val mViewModelClass: Class<VM>) : Fragment(),
     BaseView {
+
+    lateinit var refreshBroadcast: BroadcastReceiver
 
     lateinit var viewModel: VM
     open lateinit var mBinding: DB
@@ -53,7 +57,31 @@ abstract class BaseFragment<VM : BaseViewModel,
         }
         initViewModel(viewModel)
         initLifeCycleOwner()
+
+        initRefreshBroadcast()
+
         return mBinding.root
+    }
+
+    private fun initRefreshBroadcast() {
+
+        refreshBroadcast = object : BroadcastReceiver() {
+
+            override fun onReceive(context: Context?, intent: Intent?) {
+                refreshUI()
+            }
+
+        }
+
+        context?.let {
+            LocalBroadcastManager.getInstance(it)
+                .registerReceiver(refreshBroadcast, IntentFilter(Constants.REFRESH_ACTION))
+        }
+    }
+
+    @CallSuper
+    open fun refreshUI() {
+        init(null)
     }
 
 
@@ -93,6 +121,11 @@ abstract class BaseFragment<VM : BaseViewModel,
         mBinding.lifecycleOwner = this
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        hideKeyboard()
+        context?.let { LocalBroadcastManager.getInstance(it).unregisterReceiver(refreshBroadcast) }
+    }
 
     /**
      *  You need to override this method.
