@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="com.devopsolution.code9.common.Enums.UserStatusEnum" />
+
+        <variable
+            name="icon"
+            type="String" />
+
+        <variable
+            name="shop"
+            type="com.devopsolution.code9.data.network.model.Shop" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        style="@style/clickable_view_border"
+        android:layout_width="@dimen/x253dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/x9dp"
+        android:background="@drawable/item_shop_background"
+        android:elevation="@dimen/x6dp">
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/img_banner"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/x143dp"
+            android:adjustViewBounds="true"
+            android:scaleType="centerCrop"
+            app:imgUrl="@{shop.imagePath}"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@drawable/login_background" />
+
+        <TextView
+            android:layout_width="@dimen/x59dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/x11dp"
+            android:background="@drawable/search_background"
+            android:backgroundTint="@{shop.status == UserStatusEnum.Normal.value ? @color/color_37e17f : (shop.status == UserStatusEnum.Suspected.value ? @color/color_ff9200 :@color/color_ff473a)}"
+            android:elevation="@dimen/x6dp"
+            android:gravity="center"
+            android:padding="@dimen/x2dp"
+            android:text="@{shop.status == UserStatusEnum.Normal.value ? @string/trust : (shop.status == UserStatusEnum.Suspected.value ? @string/medium :@string/untrust)}"
+            android:textColor="@android:color/white"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:backgroundTint="@color/color_37e17f"
+            tools:text="Trust" />
+
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:padding="@dimen/x10dp"
+            app:layout_constraintEnd_toEndOf="@id/img_banner"
+            app:layout_constraintStart_toStartOf="@id/img_banner"
+            app:layout_constraintTop_toBottomOf="@id/img_banner">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:tint="@color/color_c7c7c7"
+                app:imgUrl="@{icon}"
+                tools:src="@drawable/ic_shop" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/x8dp"
+                android:layout_weight="1"
+                android:text="@{shop.fullName}"
+                android:textColor="@color/color_494949"
+                android:textSize="@dimen/x11sp"
+                android:textStyle="bold"
+                tools:text="Al-Hosseny Market" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/x8dp"
+                android:src="@drawable/ic_distance" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/x3dp"
+                android:text="@{@string/distance(shop.distance)}"
+                android:textColor="@color/color_494949"
+                android:textSize="@dimen/x8sp"
+                android:textStyle="bold"
+                tools:text="1.5 KM" />
+
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

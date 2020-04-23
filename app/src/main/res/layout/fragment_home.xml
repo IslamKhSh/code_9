@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <import type="com.devopsolution.code9.common.Enums.UserTypeEnum" />
+
+        <import type="com.devopsolution.code9.common.Enums.UserStatusEnum" />
+
+        <variable
+            name="viewModel"
+            type="com.devopsolution.code9.ui.fragments.home.HomeViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <include
+            android:id="@+id/toolbar"
+            layout="@layout/layout_toolbar"
+            app:showBack="@{false}"
+            app:viewModel="@{viewModel}" />
+
+        <Space
+            android:id="@+id/toolbar_space"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/x45dp"
+            app:layout_constraintBottom_toBottomOf="@id/toolbar" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card_status"
+            android:layout_width="@dimen/x285dp"
+            android:layout_height="@dimen/x116dp"
+            app:cardCornerRadius="@dimen/x25dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/toolbar_space">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:visibility="@{viewModel.dashboard == null? View.GONE : View.VISIBLE}">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/x6dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/x11dp"
+                        android:src="@{viewModel.storedUserType == UserTypeEnum.Citizen.value? @drawable/ic_medical_status : @drawable/ic_trust}"
+                        android:tint="@color/colorPrimary"
+                        tools:src="@drawable/ic_medical_status" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{viewModel.storedUserType == UserTypeEnum.Citizen.value? @string/medical_status : @string/trust_status}"
+                        android:textColor="@color/color_494949"
+                        android:textSize="@dimen/x17sp"
+                        android:textStyle="bold"
+                        tools:text="Medical Status" />
+
+                </LinearLayout>
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:adjustViewBounds="true"
+                    android:src="@{viewModel.dashboard.status == UserStatusEnum.Normal.value? @drawable/ic_bar_normal : (viewModel.dashboard.status == UserStatusEnum.Suspected.value? @drawable/ic_bar_suspected :@drawable/ic_bar_infected)}"
+                    tools:src="@drawable/ic_bar_normal" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{viewModel.dashboard.status == UserStatusEnum.Normal.value ? @string/authorized_to_go_out_of_your_home : @string/unauthorized_to_go_out_of_your_home}"
+                    android:textColor="@color/color_494949"
+                    android:textSize="@dimen/x13sp"
+                    android:visibility="@{viewModel.storedUserType == UserTypeEnum.Citizen.value? View.VISIBLE : View.GONE}"
+                    tools:text="Authorized to go out of your home" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{viewModel.dashboard.status == UserStatusEnum.Normal.value ? @string/authorized_to_receive_citizens : @string/unauthorized_to_receive_citizens}"
+                    android:textColor="@color/color_494949"
+                    android:textSize="@dimen/x13sp"
+                    android:visibility="@{viewModel.storedUserType == UserTypeEnum.Shop.value? View.VISIBLE : View.GONE}"
+                    tools:text="Authorized To Receive Citizens"
+                    tools:visibility="gone" />
+
+
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:fillViewport="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/card_status">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:id="@+id/container_home_main_action"
+                    style="@style/clickable_view_border"
+                    android:layout_width="@dimen/x285dp"
+                    android:layout_height="@dimen/x62dp"
+                    android:layout_marginTop="@dimen/x24dp"
+                    android:background="@drawable/home_main_btn_background"
+                    android:clickable="@{viewModel.storedUserType == UserTypeEnum.Citizen.value}"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/x12dp"
+                        android:src="@{viewModel.storedUserType == UserTypeEnum.Citizen.value? @drawable/ic_out : @drawable/ic_visitors}"
+                        tools:src="@drawable/ic_out" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{viewModel.storedUserType == UserTypeEnum.Citizen.value? @string/out_of_the_home : @string/num_of_visitors(viewModel.dashboard.numberOfUsersIn)}"
+                        android:textColor="@android:color/white"
+                        android:textSize="@dimen/x17sp"
+                        android:textStyle="bold"
+                        tools:text="Out of the Home" />
+
+                </LinearLayout>
+
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:visibility="@{viewModel.storedUserType == UserTypeEnum.Citizen.value ? View.VISIBLE : View.GONE}"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="@id/container_home_main_action"
+                    app:layout_constraintStart_toStartOf="@id/container_home_main_action"
+                    app:layout_constraintTop_toBottomOf="@id/container_home_main_action"
+                    tools:visibility="gone">
+
+                    <androidx.constraintlayout.helper.widget.Flow
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:flow_horizontalStyle="spread_inside"
+                        app:constraint_referenced_ids="container_safety,container_shopping,container_quarantine,container_adviser"
+                        app:flow_wrapMode="chain"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+
+                    <include
+                        android:id="@+id/container_safety"
+                        style="@style/clickable_view_border"
+                        layout="@layout/layout_home_action"
+                        android:onClick="@{() -> viewModel.onNotActiveFeatureClicked()}"
+                        app:icon="@{@drawable/ic_safety}"
+                        app:text="@{@string/safety}" />
+
+                    <include
+                        android:id="@+id/container_shopping"
+                        style="@style/clickable_view_border"
+                        layout="@layout/layout_home_action"
+                        android:onClick="@{() -> viewModel.onNotActiveFeatureClicked()}"
+                        app:icon="@{@drawable/ic_shopping}"
+                        app:text="@{@string/shopping}" />
+
+                    <include
+                        android:id="@+id/container_quarantine"
+                        style="@style/clickable_view_border"
+                        layout="@layout/layout_home_action"
+                        android:onClick="@{() -> viewModel.onNotActiveFeatureClicked()}"
+                        app:icon="@{@drawable/ic_quarantine}"
+                        app:text="@{@string/quarantine}" />
+
+                    <include
+                        android:id="@+id/container_adviser"
+                        style="@style/clickable_view_border"
+                        layout="@layout/layout_home_action"
+                        android:onClick="@{() -> viewModel.onNotActiveFeatureClicked()}"
+                        app:icon="@{@drawable/ic_doctor}"
+                        app:text="@{@string/medical_adviser}" />
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:visibility="@{viewModel.storedUserType == UserTypeEnum.Shop.value ? View.VISIBLE : View.GONE}"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/container_home_main_action">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/x24dp"
+                        android:gravity="center"
+                        android:orientation="horizontal"
+                        app:layout_constraintBottom_toTopOf="@id/btn_add_user"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent">
+
+                        <include
+                            android:id="@+id/container_check_in"
+                            style="@style/clickable_view_border"
+                            layout="@layout/layout_home_action"
+                            app:icon="@{@drawable/ic_in}"
+                            app:text="@{@string/check_in_citizen}" />
+
+                        <View
+                            android:layout_width="@dimen/x42dp"
+                            android:layout_height="1dp" />
+
+                        <include
+                            android:id="@+id/container_check_out"
+                            style="@style/clickable_view_border"
+                            layout="@layout/layout_home_action"
+                            app:icon="@{@drawable/ic_check_out}"
+                            app:text="@{@string/check_out_citizen}" />
+
+                    </LinearLayout>
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btn_add_user"
+                        style="@style/materialBtnStyle"
+                        android:layout_width="@dimen/x289dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/x24dp"
+                        android:onClick="@{() -> viewModel.onNotActiveFeatureClicked()}"
+                        android:text="@string/add_user"
+                        app:icon="@drawable/ic_add_user"
+                        app:iconGravity="textStart"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent" />
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.core.widget.NestedScrollView>
+
+
+        <include
+            layout="@layout/progress_bar"
+            app:viewModel="@{viewModel}" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

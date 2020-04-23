@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="showBack"
+            type="Boolean" />
+
+        <variable
+            name="viewModel"
+            type="com.devopsolution.code9.ui.base.BaseViewModel" />
+    </data>
+
+    <androidx.appcompat.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/x125dp"
+        android:background="@drawable/toolbar_background">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="@dimen/x22dp"
+            android:layout_marginTop="@dimen/x24dp">
+
+            <ImageView
+                android:id="@+id/img_back"
+                style="@style/clickable_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/x8dp"
+                android:onClick="@{() -> viewModel.onUpBtnClicked()}"
+                android:src="@drawable/ic_back_icon"
+                android:visibility="@{showBack ? View.VISIBLE : View.GONE}"
+                app:layout_constraintBottom_toBottomOf="@id/tv_title"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/tv_title" />
+
+            <TextView
+                android:id="@+id/tv_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/x8dp"
+                android:text="@{viewModel.navDestinationLabel}"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/x25sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toEndOf="@id/img_back"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Home" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.appcompat.widget.Toolbar>
+</layout>

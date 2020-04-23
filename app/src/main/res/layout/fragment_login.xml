@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="com.devopsolution.code9.common.Enums.UserTypeEnum" />
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="com.devopsolution.code9.ui.fragments.login.LoginViewModel" />
+    </data>
+
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorPrimary"
+        android:fillViewport="true"
+        android:fitsSystemWindows="true"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/img_background"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/x190dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/login_background"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/x30dp"
+                android:text="@string/who_are_you"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/x40sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@id/container_login_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/container_login_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="@dimen/x146dp"
+                android:background="@drawable/login_content_background"
+                android:elevation="@dimen/x10dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_citizen"
+                    style="@style/materialBtnStyle"
+                    android:layout_width="@dimen/x146dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/x40dp"
+                    android:backgroundTint="@{viewModel.userType == UserTypeEnum.Citizen? @color/colorPrimary : @android:color/white}"
+                    android:enabled="@{viewModel.userType != UserTypeEnum.Citizen}"
+                    android:onClick="@{() -> viewModel.setUserTypeValue(UserTypeEnum.Citizen)}"
+                    android:text="@string/citizen"
+                    android:textColor="@{viewModel.userType == UserTypeEnum.Citizen? @android:color/white: @color/colorPrimary }"
+                    app:icon="@drawable/ic_citizen"
+                    app:iconTint="@{viewModel.userType == UserTypeEnum.Citizen? @android:color/white: @color/colorPrimary }"
+                    app:layout_constraintEnd_toStartOf="@id/btn_shop"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:layout_width="@dimen/x20dp"
+                    android:layout_height="@dimen/x20dp"
+                    android:background="@drawable/background_check"
+                    android:elevation="@dimen/x12dp"
+                    android:padding="@dimen/x6dp"
+                    android:src="@drawable/ic_check"
+                    android:visibility="@{viewModel.userType == UserTypeEnum.Citizen? View.VISIBLE : View.GONE}"
+                    app:layout_constraintBottom_toBottomOf="@id/btn_citizen"
+                    app:layout_constraintEnd_toEndOf="@id/btn_citizen"
+                    app:layout_constraintStart_toEndOf="@id/btn_citizen"
+                    app:layout_constraintTop_toTopOf="@id/btn_citizen" />
+
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_shop"
+                    style="@style/materialBtnStyle"
+                    android:layout_width="@dimen/x146dp"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@{viewModel.userType == UserTypeEnum.Shop? @color/colorPrimary : @android:color/white}"
+                    android:enabled="@{viewModel.userType != UserTypeEnum.Shop}"
+                    android:onClick="@{() -> viewModel.setUserTypeValue(UserTypeEnum.Shop)}"
+                    android:text="@string/shop"
+                    android:textColor="@{viewModel.userType == UserTypeEnum.Shop? @android:color/white: @color/colorPrimary }"
+                    app:icon="@drawable/ic_shop"
+                    app:iconTint="@{viewModel.userType == UserTypeEnum.Shop? @android:color/white: @color/colorPrimary }"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/btn_citizen"
+                    app:layout_constraintTop_toTopOf="@id/btn_citizen" />
+
+                <ImageView
+                    android:layout_width="@dimen/x20dp"
+                    android:layout_height="@dimen/x20dp"
+                    android:background="@drawable/background_check"
+                    android:elevation="@dimen/x12dp"
+                    android:padding="@dimen/x6dp"
+                    android:src="@drawable/ic_check"
+                    android:visibility="@{viewModel.userType == UserTypeEnum.Shop? View.VISIBLE : View.GONE}"
+                    app:layout_constraintBottom_toBottomOf="@id/btn_shop"
+                    app:layout_constraintEnd_toEndOf="@id/btn_shop"
+                    app:layout_constraintStart_toEndOf="@id/btn_shop"
+                    app:layout_constraintTop_toTopOf="@id/btn_shop" />
+
+
+                <com.devopsolution.code9.ui.customs.CustomEditText
+                    android:id="@+id/et_id_number"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/x21dp"
+                    android:layout_marginTop="@dimen/x61dp"
+                    android:layout_marginEnd="@dimen/x21dp"
+                    android:drawableStart="@drawable/ic_email"
+                    android:drawablePadding="@dimen/x12dp"
+                    android:hint="@string/id_number"
+                    android:inputType="number"
+                    android:textColor="@color/color_97a2ba"
+                    android:textSize="@dimen/x17sp"
+                    app:layout_constraintTop_toBottomOf="@id/btn_citizen"
+                    app:required="true" />
+
+
+                <com.devopsolution.code9.ui.customs.CustomEditText
+                    android:id="@+id/et_password"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/password"
+                    android:inputType="textPassword"
+                    android:layout_marginStart="@dimen/x21dp"
+                    android:layout_marginTop="@dimen/x24dp"
+                    android:layout_marginEnd="@dimen/x21dp"
+                    android:textColor="@color/color_97a2ba"
+                    android:drawableStart="@drawable/ic_password"
+                    android:drawablePadding="@dimen/x12dp"
+                    android:textSize="@dimen/x17sp"
+                    app:layout_constraintEnd_toEndOf="@id/et_id_number"
+                    app:layout_constraintStart_toStartOf="@id/et_id_number"
+                    app:layout_constraintTop_toBottomOf="@id/et_id_number"
+                    app:required="true" />
+
+
+                <TextView
+                    android:id="@+id/tv_forget_pass"
+                    style="@style/clickable_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/x8dp"
+                    android:text="@string/forget_password"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="@dimen/x18sp"
+                    app:layout_constraintEnd_toEndOf="@id/et_password"
+                    app:layout_constraintTop_toBottomOf="@id/et_password" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_login"
+                    style="@style/materialBtnStyle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/x30dp"
+                    android:text="@string/login"
+                    app:cornerRadius="@dimen/x25dp"
+                    app:layout_constraintEnd_toEndOf="@id/et_password"
+                    app:layout_constraintStart_toStartOf="@id/et_password"
+                    app:layout_constraintTop_toBottomOf="@id/tv_forget_pass" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/x16dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/btn_login">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/x6dp"
+                        android:text="@string/don_t_have_an_account"
+                        android:textColor="@color/color_494949"
+                        android:textSize="@dimen/x17sp" />
+
+                    <TextView
+                        android:id="@+id/tv_sign_up"
+                        style="@style/clickable_view"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/sign_up"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="@dimen/x18sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <include
+                layout="@layout/progress_bar"
+                app:viewModel="@{viewModel}" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+
+</layout>

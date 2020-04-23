@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="com.devopsolution.code9.common.Enums.UserStatusEnum" />
+
+        <variable
+            name="viewModel"
+            type="com.devopsolution.code9.ui.dialogs.bar_code.BarCodeViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <include
+            android:id="@+id/toolbar"
+            layout="@layout/layout_toolbar"
+            app:showBack="@{true}"
+            app:viewModel="@{viewModel}" />
+
+        <Space
+            android:id="@+id/toolbar_space"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/x40dp"
+            app:layout_constraintBottom_toBottomOf="@id/toolbar" />
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginStart="@dimen/x22dp"
+            android:layout_marginEnd="@dimen/x22dp"
+            android:layout_marginBottom="@dimen/x22dp"
+            app:cardCornerRadius="@dimen/x25dp"
+            app:cardElevation="@dimen/x8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="@id/toolbar_space">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/x24dp"
+                    android:gravity="center"
+                    android:text="@{viewModel.shop.status == UserStatusEnum.Normal.value ? @string/trust : (viewModel.shop.status == UserStatusEnum.Suspected.value ? @string/medium :@string/untrust)}"
+                    android:textColor="@color/color_494949"
+                    android:textSize="@dimen/x20sp"
+                    android:textStyle="bold"
+                    tools:text="Trust" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/x6dp"
+                    android:adjustViewBounds="true"
+                    android:src="@{viewModel.shop.status == UserStatusEnum.Normal.value? @drawable/ic_bar_normal : (viewModel.shop.status == UserStatusEnum.Suspected.value? @drawable/ic_bar_suspected :@drawable/ic_bar_infected)}"
+                    tools:src="@drawable/ic_bar_normal" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical">
+
+                    <ImageView
+                        imgUrl="@{viewModel.categoryIcon}"
+                        android:layout_width="@dimen/x20dp"
+                        android:layout_height="@dimen/x20dp"
+                        android:tint="@color/colorPrimary"
+                        tools:src="@drawable/ic_shop" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/x6dp"
+                        android:text="@{viewModel.shop.fullName}"
+                        android:textColor="@color/color_494949"
+                        android:textSize="@dimen/x25sp"
+                        android:textStyle="bold"
+                        tools:text="Seif Pharmcy" />
+
+                </LinearLayout>
+
+
+                <ImageView
+                    android:id="@+id/img_bar_code"
+                    android:layout_width="@dimen/bar_code_size"
+                    android:layout_height="@dimen/bar_code_size"
+                    android:layout_marginTop="@dimen/x24dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/x52dp"
+                    android:layout_marginTop="@dimen/x12dp"
+                    android:layout_marginEnd="@dimen/x52dp"
+                    android:gravity="center"
+                    android:text="@string/provide_code"
+                    android:textColor="@color/color_494949"
+                    android:textSize="@dimen/x17sp" />
+
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+
+        <include
+            layout="@layout/progress_bar"
+            app:viewModel="@{viewModel}" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

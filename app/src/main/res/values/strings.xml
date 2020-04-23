@@ -1,0 +1,59 @@
+<resources>
+    <string name="app_name">Code9</string>
+
+    <string name="msg_error_connection">Error in connection</string>
+    <string name="msg_something_error">Something error</string>
+    <string name="msg_server_error">Server error… please try again</string>
+    <string name="no_internet">No internet connection</string>
+    <string name="empty_error_msg">Please, Enter your</string>
+    <string name="pass_validation_error_msg">Password must be at least 6 chars</string>
+
+
+
+    <string name="who_are_you">Who Are You?</string>
+    <string name="citizen">Citizen</string>
+    <string name="shop">Shop</string>
+    <string name="id_number">ID Number</string>
+    <string name="password">Password</string>
+    <string name="forget_password">Forget Password?</string>
+    <string name="login">Login</string>
+    <string name="don_t_have_an_account">Don\'t have an account?</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="coming_soon">Will be added in the full version</string>
+    <string name="home">Home</string>
+    <string name="medical_status">Medical Status</string>
+    <string name="trust_status">Trust Status</string>
+    <string name="out_of_the_home">Out of the Home</string>
+    <string name="num_of_visitors">%d Current Visitors</string>
+
+    <string name="safety">Personal Safety</string>
+    <string name="shopping">Remote Shopping</string>
+    <string name="quarantine">Quarantine</string>
+    <string name="medical_adviser">Medical Adviser</string>
+    <string name="check_in_citizen">Check in New Citizen</string>
+    <string name="check_out_citizen">Check out Citizen</string>
+
+    <string name="authorized_to_go_out_of_your_home">Authorized to go out of your home</string>
+    <string name="unauthorized_to_go_out_of_your_home">UnAuthorized to go out of your home</string>
+
+    <string name="authorized_to_receive_citizens">Authorized To Receive Citizens</string>
+    <string name="unauthorized_to_receive_citizens">Unauthorized To Receive Citizens</string>
+    <string name="add_user">Add User</string>
+    <string name="search_hint">Super Market, Pharmacy</string>
+
+    <string name="distance">%,.1f KM</string>
+
+    <string name="trust">Trust</string>
+    <string name="medium">Medium</string>
+    <string name="untrust">UnTrust</string>
+    <string name="provide_code">Provide this code to shop safety guards</string>
+    <string name="authorized_to_check_in">Authorized To Check in</string>
+    <string name="unauthorized_to_check_in">Unauthorized To Check in</string>
+    <string name="confirm">Confirm</string>
+
+    <string name="check_in">Check In</string>
+    <string name="check_out">Check Out</string>
+    <string name="capture_qrcode_prompt">Scan user QR code to check him in</string>
+    <string name="global_channel_name">Global notifications</string>
+    <string name="global_channel_description">For different types</string>
+</resources>

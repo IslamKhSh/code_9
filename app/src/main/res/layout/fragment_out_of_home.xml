@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.devopsolution.code9.ui.fragments.out_of_home.OutOfHomeViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <include
+            android:id="@+id/toolbar"
+            layout="@layout/layout_toolbar"
+            app:showBack="@{true}"
+            app:viewModel="@{viewModel}" />
+
+<!--        <androidx.appcompat.widget.SearchView-->
+<!--            android:id="@+id/search_shops"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginStart="@dimen/x21dp"-->
+<!--            android:layout_marginEnd="@dimen/x21dp"-->
+<!--            android:background="@drawable/search_background"-->
+<!--            android:elevation="@dimen/x6dp"-->
+<!--            app:iconifiedByDefault="false"-->
+<!--            app:layout_constraintBottom_toBottomOf="@id/toolbar"-->
+<!--            app:layout_constraintTop_toBottomOf="@id/toolbar"-->
+<!--            app:queryBackground="@null"-->
+<!--            app:queryHint="@string/search_hint"-->
+<!--            app:searchIcon="@drawable/ic_search" />-->
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_categories"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clipToPadding="false"
+            android:paddingTop="@dimen/x36dp"
+            app:layout_constraintTop_toBottomOf="@id/toolbar" />
+
+        <include
+            layout="@layout/progress_bar"
+            app:viewModel="@{viewModel}" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

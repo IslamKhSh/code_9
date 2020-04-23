@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="CustomMaterialEditText">
+
+        <attr name="required" format="boolean"/>
+        <attr name="required_error_msg" format="string"/>
+
+
+        <attr name="validation_type">
+            <enum name="none" value="0"/>
+            <enum name="password" value="1"/>
+
+        </attr>
+        <attr name="validation_error_msg" format="string" />
+
+        <!-- must be used when setting validation_type to confirm_pass-->
+        <attr name="must_match" format="reference"/>
+
+    </declare-styleable>
+
+
+</resources>

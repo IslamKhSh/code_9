@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "184487085358",
+    "firebase_url": "https://code9-fd915.firebaseio.com",
+    "project_id": "code9-fd915",
+    "storage_bucket": "code9-fd915.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:184487085358:android:f05b18f7143815b7cd66bf",
+        "android_client_info": {
+          "package_name": "com.devopsolution.code9"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "184487085358-imigs654qjp55i6spc522c77mhldsef5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDgB-4JoUF5CUgqTaN1dzh6Pchj9uq2xNQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "184487085358-imigs654qjp55i6spc522c77mhldsef5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

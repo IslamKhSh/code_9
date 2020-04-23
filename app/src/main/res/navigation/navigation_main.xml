@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation_main"
+    app:startDestination="@id/home_fragment">
+
+    <fragment
+        android:id="@+id/home_fragment"
+        android:name="com.devopsolution.code9.ui.fragments.home.HomeFragment"
+        android:label="@string/home"
+        tools:layout="@layout/fragment_home" />
+
+    <fragment
+        android:id="@+id/outOfHome_fragment"
+        android:name="com.devopsolution.code9.ui.fragments.out_of_home.OutOfHomeFragment"
+        android:label="@string/out_of_the_home"
+        tools:layout="@layout/fragment_out_of_home">
+
+        <action
+            android:id="@+id/action_outOfHome_to_barCode"
+            app:destination="@id/barCodeDialog">
+
+            <argument
+                android:name="shop"
+                app:argType="com.devopsolution.code9.data.network.model.Shop" />
+
+            <argument
+                android:name="icon"
+                app:argType="string"
+                app:nullable="true"/>
+        </action>
+    </fragment>
+
+    <dialog
+        android:id="@+id/barCodeDialog"
+        android:name="com.devopsolution.code9.ui.dialogs.bar_code.BarCodeDialogFragment"
+        android:label="@string/out_of_the_home"
+        tools:layout="@layout/dialog_bar_code">
+
+        <argument
+            android:name="shop"
+            app:argType="com.devopsolution.code9.data.network.model.Shop" />
+
+        <argument
+            android:name="icon"
+            app:argType="string"
+            app:nullable="true"/>
+    </dialog>
+
+    <fragment android:id="@+id/checkInFragment"
+        android:name="com.devopsolution.code9.ui.fragments.check_in.CheckInFragment"
+        tools:layout="@layout/fragment_check_in"
+        android:label="@string/check_in"/>
+
+</navigation>
