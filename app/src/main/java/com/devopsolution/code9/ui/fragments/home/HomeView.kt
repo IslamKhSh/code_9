@@ -6,4 +6,5 @@ interface HomeView :BaseView{
 
     fun initCheckOut()
     fun initFcmToken()
+    fun checkout(userId: String)
 }

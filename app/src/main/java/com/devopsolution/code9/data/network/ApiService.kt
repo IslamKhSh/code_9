@@ -30,7 +30,7 @@ interface ApiService {
     fun registerToken(@Body body: Map<String, String>) : Call<GeneralResponse<Any?>>
 
     @POST("Admin/UnRegisterDeviceToken")
-    fun logout(@Query("userId") userId: String): Call<GeneralResponse<Any?>>
+    fun logout(@Body body: Map<String, String>): Call<GeneralResponse<Any?>>
 
 
 }

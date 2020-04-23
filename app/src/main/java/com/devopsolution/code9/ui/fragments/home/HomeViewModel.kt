@@ -3,6 +3,7 @@ package com.devopsolution.code9.ui.fragments.home
 import android.app.Application
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
+import com.devopsolution.code9.data.network.model.ApiResponse
 import com.devopsolution.code9.data.network.model.Dashboard
 import com.devopsolution.code9.ui.base.BaseViewModel
 
@@ -53,6 +54,14 @@ class HomeViewModel(app: Application) : BaseViewModel(app) {
                 appRepositoryHelper.clearUserData()
                 isLogoutRequired.postValue(true)
             }
+        }
+    }
+
+    fun checkout(userId: String): MutableLiveData<ApiResponse<Any?>> {
+        isLoading.value = true
+
+        return appRepositoryHelper.checkOutUser(userId).apply {
+            observeForever(this@HomeViewModel::handleResponseWhenError)
         }
     }
 

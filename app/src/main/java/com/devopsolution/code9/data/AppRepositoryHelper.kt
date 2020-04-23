@@ -32,10 +32,12 @@ class AppRepositoryHelper @Inject constructor(
     override fun registerToken(
         fcmToken: String,
         deviceId: String,
-        userId: String?
-    ) = networkHelper.registerToken(fcmToken, deviceId, getUserId())
+        userId: String?,
+        userType: String?
+    ) = networkHelper.registerToken(fcmToken, deviceId, getUserId(), getUserType().toString())
 
-    override fun logout(userId: String?) = networkHelper.logout(getUserId())
+    override fun logout(userId: String?, userType: String?) =
+        networkHelper.logout(getUserId(), getUserType().toString())
 
     ///////// preferences /////////////
     override fun setUserId(id: String?) = prefHelper.setUserId(id)

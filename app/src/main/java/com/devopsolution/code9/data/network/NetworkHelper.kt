@@ -13,9 +13,11 @@ interface NetworkHelper {
     fun registerToken(
         fcmToken: String,
         deviceId: String,
-        userId: String? = null
+        userId: String? = null,
+        userType: String? = null
     ): MutableLiveData<ApiResponse<Any?>>
 
+    fun logout(userId: String? = null, userType: String? = null): MutableLiveData<ApiResponse<Any?>>
+
     fun checkOutUser(userId: String, shopId: String? = null): MutableLiveData<ApiResponse<Any?>>
-    fun logout(userId: String? = null): MutableLiveData<ApiResponse<Any?>>
 }

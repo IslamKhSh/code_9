@@ -9,10 +9,14 @@ import com.devopsolution.code9.R
 import com.devopsolution.code9.data.AppRepositoryHelper
 import com.devopsolution.code9.data.network.model.ApiResponse
 import com.devopsolution.code9.data.network.model.ErrorResponse
+import com.devopsolution.code9.data.network.model.GeneralResponse
 import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 import java.io.IOException
+import java.lang.Exception
 import javax.inject.Inject
 import javax.inject.Singleton
+
 
 @Singleton
 abstract class BaseViewModel(val app: Application) : AndroidViewModel(app) {
@@ -61,18 +65,27 @@ abstract class BaseViewModel(val app: Application) : AndroidViewModel(app) {
                 R.string.msg_something_error
             )
         } else when (response.responseCode) {
+            200 -> {
+                try {
+                    val gson = Gson()
+                    val error: GeneralResponse<List<String>> = gson
+                        .fromJson(
+                            response.errorBody?.string(),
+                            object : TypeToken<GeneralResponse<T?>?>() {}.type
+                        )
+
+                    if (!error.errors.isNullOrEmpty())
+                        errorMsg.postValue(error.errors[0])
+                } catch (e: Exception) {
+                    e.printStackTrace()
+                    errorMsgRes.postValue(R.string.msg_something_error)
+                }
+
+            }
             504 -> errorMsgRes.postValue(R.string.no_internet)
             500 -> errorMsgRes.postValue(R.string.msg_server_error)
-            401 -> {
-            }
-            else -> try {
-                val gson = Gson()
-                val error: ErrorResponse = gson
-                    .fromJson(response.errorBody?.string(), ErrorResponse::class.java)
-                errorMsg.postValue(error.message)
-            } catch (e: Exception) {
-                errorMsgRes.postValue(R.string.msg_something_error)
-            }
+            401 -> isLogoutRequired.postValue(true)
+            else -> errorMsgRes.postValue(R.string.msg_something_error)
         }
     }
 
