@@ -124,7 +124,7 @@
                     android:visibility="@{viewModel.user.status == UserStatusEnum.Normal.value ? View.VISIBLE : View.GONE}"
                     app:icon="@drawable/ic_confirm"
                     app:iconGravity="textStart"
-                    app:iconSize="@dimen/x17dp" />
+                    app:iconSize="@dimen/x20dp" />
 
 
             </LinearLayout>
