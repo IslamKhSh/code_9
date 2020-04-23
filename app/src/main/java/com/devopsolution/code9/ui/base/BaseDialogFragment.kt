@@ -15,6 +15,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.devopsolution.code9.R
 import com.devopsolution.code9.common.extensions.errorMsg
+import com.devopsolution.code9.common.extensions.showDialog
 import com.google.gson.Gson
 import java.io.IOException
 
@@ -91,8 +92,11 @@ abstract class BaseDialogFragment<VM : BaseViewModel,
             }
         })
 
-        viewModel.errorMsg.observe(viewLifecycleOwner, Observer { errorMsg(it) })
-        viewModel.errorMsgRes.observe(viewLifecycleOwner, Observer { errorMsg(it) })
+        viewModel.errorMsg.observe(viewLifecycleOwner, Observer { showDialog(it, {}) })
+        viewModel.errorMsgRes.observe(
+            viewLifecycleOwner,
+            Observer { showDialog(getString(it), {}) })
+
     }
 
     override fun onResume() {

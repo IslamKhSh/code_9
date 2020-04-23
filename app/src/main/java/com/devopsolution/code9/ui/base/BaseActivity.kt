@@ -67,8 +67,7 @@ abstract class BaseActivity<VM : BaseViewModel, DB : ViewDataBinding>
 
     @CallSuper
     override fun observeLiveDatas() {
-        viewModel.errorMsg.observe(this, Observer { errorMsg(it) })
-        viewModel.errorMsgRes.observe(this, Observer { errorMsg(it) })
+
     }
 
     override fun hideKeyboard() {

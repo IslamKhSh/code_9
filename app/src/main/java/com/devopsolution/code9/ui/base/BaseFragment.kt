@@ -18,6 +18,7 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
 import com.devopsolution.code9.common.extensions.errorMsg
 import com.devopsolution.code9.common.extensions.goToActivity
+import com.devopsolution.code9.common.extensions.showDialog
 import com.devopsolution.code9.ui.activities.auth.AuthActivity
 import com.devopsolution.code9.ui.activities.splash.SplashActivity
 
@@ -73,8 +74,10 @@ abstract class BaseFragment<VM : BaseViewModel,
             }
         })
 
-        viewModel.errorMsg.observe(viewLifecycleOwner, Observer { errorMsg(it) })
-        viewModel.errorMsgRes.observe(viewLifecycleOwner, Observer { errorMsg(it) })
+        viewModel.errorMsg.observe(viewLifecycleOwner, Observer { showDialog(it, {}) })
+        viewModel.errorMsgRes.observe(
+            viewLifecycleOwner,
+            Observer { showDialog(getString(it), {}) })
 
         viewModel.isLogoutRequired.observe(viewLifecycleOwner, Observer {
 

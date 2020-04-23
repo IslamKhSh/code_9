@@ -66,21 +66,11 @@ abstract class BaseViewModel(val app: Application) : AndroidViewModel(app) {
             )
         } else when (response.responseCode) {
             200 -> {
-                try {
-                    val gson = Gson()
-                    val error: GeneralResponse<List<String>> = gson
-                        .fromJson(
-                            response.errorBody?.string(),
-                            object : TypeToken<GeneralResponse<T?>?>() {}.type
-                        )
 
-                    if (!error.errors.isNullOrEmpty())
-                        errorMsg.postValue(error.errors[0])
-                } catch (e: Exception) {
-                    e.printStackTrace()
+                if (!response.responseBody?.errors.isNullOrEmpty())
+                    errorMsg.postValue(response.responseBody!!.errors[0])
+                else
                     errorMsgRes.postValue(R.string.msg_something_error)
-                }
-
             }
             504 -> errorMsgRes.postValue(R.string.no_internet)
             500 -> errorMsgRes.postValue(R.string.msg_server_error)
