@@ -3,6 +3,8 @@ package com.devopsolution.code9.common.extensions
 import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.content.Context
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
@@ -129,5 +131,6 @@ fun Fragment.showDialog(
         .setView(view)
         .create()
 
-    dialog.show()
+    dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+    dialog?.show()
 }

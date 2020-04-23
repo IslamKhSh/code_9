@@ -56,5 +56,5 @@
     <string name="capture_qrcode_prompt">Scan user QR code to check him in</string>
     <string name="global_channel_name">Global notifications</string>
     <string name="global_channel_description">For different types</string>
-    <string name="check_out_successfuly">User checked Out successfully</string>
+    <string name="check_out_successfuly">User checked out successfully</string>
 </resources>
