@@ -101,7 +101,7 @@
                     android:textColor="@color/color_494949"
                     android:textSize="@dimen/x13sp"
                     android:visibility="@{viewModel.storedUserType == UserTypeEnum.Citizen.value? View.VISIBLE : View.GONE}"
-                    tools:text="Authorized to go out of your home" />
+                    tools:text="Permission Granted" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -110,7 +110,7 @@
                     android:textColor="@color/color_494949"
                     android:textSize="@dimen/x13sp"
                     android:visibility="@{viewModel.storedUserType == UserTypeEnum.Shop.value? View.VISIBLE : View.GONE}"
-                    tools:text="Authorized To Receive Citizens"
+                    tools:text="Allowed to Receive Citizens"
                     tools:visibility="gone" />
 
 
@@ -156,7 +156,7 @@
                         android:textColor="@android:color/white"
                         android:textSize="@dimen/x17sp"
                         android:textStyle="bold"
-                        tools:text="Out of the Home" />
+                        tools:text="Permission" />
 
                 </LinearLayout>
 

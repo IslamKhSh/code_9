@@ -23,7 +23,7 @@
     <string name="home">Home</string>
     <string name="medical_status">Medical Status</string>
     <string name="trust_status">Trust Status</string>
-    <string name="out_of_the_home">Out of the Home</string>
+    <string name="out_of_the_home">Permission</string>
     <string name="num_of_visitors">%d Current Visitors</string>
 
     <string name="safety">Personal Safety</string>
@@ -33,19 +33,19 @@
     <string name="check_in_citizen">Check in New Citizen</string>
     <string name="check_out_citizen">Check out Citizen</string>
 
-    <string name="authorized_to_go_out_of_your_home">Authorized to go out of your home</string>
-    <string name="unauthorized_to_go_out_of_your_home">UnAuthorized to go out of your home</string>
+    <string name="authorized_to_go_out_of_your_home">Permission Granted to leave Your Home</string>
+    <string name="unauthorized_to_go_out_of_your_home">Permission Denied to leave Your Home</string>
 
-    <string name="authorized_to_receive_citizens">Authorized To Receive Citizens</string>
-    <string name="unauthorized_to_receive_citizens">Unauthorized To Receive Citizens</string>
+    <string name="authorized_to_receive_citizens">Allowed To Receive Citizens</string>
+    <string name="unauthorized_to_receive_citizens">Not Allowed To Receive Citizens</string>
     <string name="add_user">Add User</string>
     <string name="search_hint">Super Market, Pharmacy</string>
 
     <string name="distance">%,.1f m</string>
 
-    <string name="trust">Trust</string>
-    <string name="medium">Medium</string>
-    <string name="untrust">UnTrust</string>
+    <string name="trust">Trusted</string>
+    <string name="medium">Suspected</string>
+    <string name="untrust"> Not Trusted</string>
     <string name="provide_code">Provide this code to shop safety guards</string>
     <string name="authorized_to_check_in">Authorized To Check in</string>
     <string name="unauthorized_to_check_in">Unauthorized To Check in</string>
