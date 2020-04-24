@@ -32,10 +32,10 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/x28dp"
             android:layout_marginEnd="@dimen/x12dp"
-            android:src="@drawable/ic_check_out"
             android:adjustViewBounds="true"
-            android:tint="@android:color/white"
             android:onClick="@{() -> viewModel.logout()}"
+            android:src="@drawable/ic_check_out"
+            android:tint="@android:color/white"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -48,7 +48,7 @@
         <androidx.cardview.widget.CardView
             android:id="@+id/card_status"
             android:layout_width="@dimen/x285dp"
-            android:layout_height="@dimen/x116dp"
+            android:layout_height="@dimen/x125dp"
             app:cardCornerRadius="@dimen/x25dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -97,18 +97,24 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@{viewModel.dashboard.status == UserStatusEnum.Normal.value ? @string/authorized_to_go_out_of_your_home : @string/unauthorized_to_go_out_of_your_home}"
+                    android:text="@{viewModel.dashboard.status == UserStatusEnum.Infected.value ? @string/unauthorized_to_go_out_of_your_home : @string/authorized_to_go_out_of_your_home}"
                     android:textColor="@color/color_494949"
                     android:textSize="@dimen/x13sp"
+                    android:layout_marginEnd="@dimen/x12dp"
+                    android:layout_marginStart="@dimen/x12dp"
+                    android:gravity="center"
                     android:visibility="@{viewModel.storedUserType == UserTypeEnum.Citizen.value? View.VISIBLE : View.GONE}"
                     tools:text="Permission Granted" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@{viewModel.dashboard.status == UserStatusEnum.Normal.value ? @string/authorized_to_receive_citizens : @string/unauthorized_to_receive_citizens}"
+                    android:text="@{viewModel.dashboard.status == UserStatusEnum.Infected.value ? @string/unauthorized_to_receive_citizens : @string/authorized_to_receive_citizens}"
                     android:textColor="@color/color_494949"
                     android:textSize="@dimen/x13sp"
+                    android:layout_marginEnd="@dimen/x12dp"
+                    android:layout_marginStart="@dimen/x12dp"
+                    android:gravity="center"
                     android:visibility="@{viewModel.storedUserType == UserTypeEnum.Shop.value? View.VISIBLE : View.GONE}"
                     tools:text="Allowed to Receive Citizens"
                     tools:visibility="gone" />
@@ -152,7 +158,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@{viewModel.storedUserType == UserTypeEnum.Citizen.value? @string/out_of_the_home : @string/num_of_visitors(viewModel.dashboard.numberOfUsersIn)}"
+                        android:text="@{viewModel.storedUserType == UserTypeEnum.Citizen.value? @string/out_of_the_home : @string/num_of_visitors(viewModel.dashboard.numberOfUsersIn??0)}"
                         android:textColor="@android:color/white"
                         android:textSize="@dimen/x17sp"
                         android:textStyle="bold"
@@ -218,7 +224,7 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:visibility="@{viewModel.storedUserType == UserTypeEnum.Shop.value ? View.VISIBLE : View.GONE}"
+                    android:visibility="@{viewModel.storedUserType == UserTypeEnum.Shop.value &amp;&amp; viewModel.dashboard.status != UserStatusEnum.Infected.value? View.VISIBLE : View.GONE}"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"

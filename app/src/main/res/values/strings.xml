@@ -24,7 +24,7 @@
     <string name="medical_status">Medical Status</string>
     <string name="trust_status">Trust Status</string>
     <string name="out_of_the_home">Permission</string>
-    <string name="num_of_visitors">%d Current Visitors</string>
+    <string name="num_of_visitors">%d/50 Current Visitors</string>
 
     <string name="safety">Personal Safety</string>
     <string name="shopping">Remote Shopping</string>
@@ -37,7 +37,7 @@
     <string name="unauthorized_to_go_out_of_your_home">Permission Denied to leave Your Home</string>
 
     <string name="authorized_to_receive_citizens">Allowed To Receive Citizens</string>
-    <string name="unauthorized_to_receive_citizens">Not Allowed To Receive Citizens</string>
+    <string name="unauthorized_to_receive_citizens">Violation - Review the government</string>
     <string name="add_user">Add User</string>
     <string name="search_hint">Super Market, Pharmacy</string>
 
