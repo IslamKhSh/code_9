@@ -2,23 +2,17 @@ package com.devopsolution.code9.ui.base
 
 import android.content.Context
 import android.content.Intent
-import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
-import android.view.WindowManager
 import android.view.inputmethod.InputMethodManager
 import androidx.annotation.CallSuper
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelProviders
 import com.devopsolution.code9.common.Constants
 import com.devopsolution.code9.common.extensions.appComponent
-import com.devopsolution.code9.common.extensions.errorMsg
 import com.devopsolution.code9.common.extensions.get
-import com.devopsolution.code9.common.utils.Localization
 import kotlinx.android.synthetic.main.activity_main.*
 
 
@@ -34,17 +28,7 @@ abstract class BaseActivity<VM : BaseViewModel, DB : ViewDataBinding>
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
-
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
-            Localization.SetLanguage(
-                this, appComponent().getSharedPreference().get(
-                    Constants.CURRENT_LANGUAGE_KEY, Constants.NOT_DEFIEND_LANG
-                )
-            )
-
         super.onCreate(savedInstanceState)
-
 
         initViewModel(viewModel)
         initLifeCycleOwner()

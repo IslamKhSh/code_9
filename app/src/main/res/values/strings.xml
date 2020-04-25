@@ -57,4 +57,5 @@
     <string name="global_channel_name">Global notifications</string>
     <string name="global_channel_description">For different types</string>
     <string name="check_out_successfuly">User checked out successfully</string>
+    <string name="select_language">Select Language</string>
 </resources>

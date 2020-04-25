@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="language"
+            type="com.devopsolution.code9.ui.activities.language.AvailableLang" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="@dimen/x310dp"
+        android:layout_height="wrap_content"
+        style="@style/clickable_view_border">
+
+        <ImageView
+            android:layout_width="@dimen/x20dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/x6dp"
+            android:adjustViewBounds="true"
+            android:src="@drawable/ic_tick"
+            android:visibility="@{language.selected ? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toBottomOf="@id/tv_language_name"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tv_language_name" />
+
+        <TextView
+            android:id="@+id/tv_language_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/x12dp"
+            android:text="@{language.name}"
+            android:textSize="@dimen/x18sp"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:textColor="@{language.selected ? @color/colorPrimary : @color/color_494949}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="English" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/x2dp"
+            android:background="@color/color_c7c7c7"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -35,7 +35,7 @@ object Constants {
     const val USER_FCM_TOKEN = "USER_FCM_TOKEN"
 
 
-    const val CURRENT_LANGUAGE_KEY = "CURRENT_LANGUAGE"
+    const val USER_LANGUAGE = "USER_LANGUAGE"
 
     const val GLOBAL_NOTIFICATIONS_CHANNEL = "GLOBAL"
 

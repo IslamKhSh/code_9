@@ -2,11 +2,17 @@ package com.devopsolution.code9.ui.activities.main
 
 import android.os.Bundle
 import com.devopsolution.code9.R
+import com.devopsolution.code9.common.utils.Localization
 import com.devopsolution.code9.databinding.ActivityMainBinding
 import com.devopsolution.code9.ui.base.BaseActivity
 
 class MainActivity : MainView,
     BaseActivity<MainViewModel, ActivityMainBinding>(MainViewModel::class.java) {
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        Localization.updateLanguage(this)
+        super.onCreate(savedInstanceState)
+    }
 
     override fun getLayoutRes() = R.layout.activity_main
 
